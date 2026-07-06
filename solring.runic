@@ -1,7 +1,13 @@
-function main()
-    return {val = "Hello, World!"}
-end
+return {
+  name = "Sol Ring",
+  type = "Artifact",
+  mana_cost = "{1}",
 
-
-main()
-
+  abilities = {
+    {
+      kind = "mana_ability",
+      cost = "{T}",
+      produces = { color = "C", amount = 2 },
+    },
+  },
+}
