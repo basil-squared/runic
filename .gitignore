@@ -1,0 +1,8 @@
+build/
+*.o
+*.exe
+*.out
+.vscode/
+CMakeUserPresets.json
+compile_commands.json
+vcpkg_installed/
