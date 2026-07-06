@@ -50,11 +50,11 @@ Card runic_parse(lua_State *lua, char *file_name) {
         lua_getfield(lua,-1,"produces");
 
         
-        abilities[i-1].produces_color = runic_safe_alloc(lua,"color");
-        abilities[i-1].produces_amount = runic_safe_alloc(lua,"amount");
+        abilities[i-1].produces_color = runic_safe_alloc(lua,"color"); 
+        abilities[i-1].produces_amount = runic_safe_alloc(lua,"amount"); // FIXME: this is supposed to be a number
 
         lua_pop(lua,2);
-        lua_pop(lua,1);
+        
     }
     
 
