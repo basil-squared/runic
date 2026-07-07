@@ -1,3 +1,6 @@
+#ifndef RUNIC_H
+#define RUNIC_H
+
 typedef struct {
     char *kind;
     char *cost;
@@ -14,3 +17,8 @@ typedef struct {
     Ability *abilities;
     int ability_count;
 } Card;
+
+Card runic_parse(lua_State *lua, char *file_name);
+char *runic_safe_alloc(lua_State *lua, const char *field_name);
+int runic_safe_alloc_int(lua_State *lua, const char *field_name, int default_val);
+#endif
