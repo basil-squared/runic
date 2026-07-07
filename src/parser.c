@@ -2,7 +2,7 @@
 #include <lauxlib.h>
 #include <runic.h>
 #include <string.h>
-
+#include <stdlib.h>
 /// @brief  safely attempts to allocate a string from the lua stack
 /// @return  the string, or NULL
 char *runic_safe_alloc(lua_State *lua, const char *field_name) {
