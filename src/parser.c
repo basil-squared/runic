@@ -41,51 +41,35 @@ Card runic_parse(lua_State *lua, char *file_name) {
     ret.name = runic_safe_alloc(lua,"name");
     ret.type = runic_safe_alloc(lua,"type");
     ret.mana_cost = runic_safe_alloc(lua,"mana_cost");
-    
-    
-
-   
-    
-    
-
     lua_getfield(lua,-1,"abilities");
     if (!lua_isnil(lua,-1)) {
-
-    
-    int n = lua_rawlen(lua,-1);
-    Ability *abilities = malloc(sizeof(Ability) * n);
-    for (int i = 1; i <= n; i++) {
-        lua_rawgeti(lua,-1,i);
+        int n = lua_rawlen(lua,-1);
+        Ability *abilities = malloc(sizeof(Ability) * n);
+        for (int i = 1; i <= n; i++) {
+            lua_rawgeti(lua,-1,i);
+            abilities[i-1].kind = runic_safe_alloc(lua,"kind");
+            abilities[i-1].cost = runic_safe_alloc(lua,"cost");
         
-    
-        abilities[i-1].kind = runic_safe_alloc(lua,"kind");
+            lua_getfield(lua,-1,"produces");
+            if (!lua_isnil(lua,-1)) {
+                abilities[i-1].produces_color = runic_safe_alloc(lua,"color"); 
+                abilities[i-1].produces_amount = runic_safe_alloc_int(lua,"amount",0);
+            } 
+            else {
+                abilities[i-1].produces_color = NULL;
+                abilities[i-1].produces_amount = 0;
+            }
         
-
+            lua_pop(lua,2);
         
-        abilities[i-1].cost = runic_safe_alloc(lua,"cost");
-        
-        
-        lua_getfield(lua,-1,"produces");
-        if (!lua_isnil(lua,-1)) {
-            abilities[i-1].produces_color = runic_safe_alloc(lua,"color"); 
-            abilities[i-1].produces_amount = runic_safe_alloc_int(lua,"amount",0);
-        } else {
-            abilities[i-1].produces_color = NULL;
-            abilities[i-1].produces_amount = 0;
         }
-        
-        
-
+        ret.abilities = abilities;
+        ret.ability_count = n;
         lua_pop(lua,2);
-        
+    } else {
+        ret.abilities = NULL;
+        ret.ability_count = 0;
+        lua_pop(lua,1);
     }
-    ret.abilities = abilities;
-    ret.ability_count = n;
-    lua_pop(lua,2);
-} else {
-    ret.abilities = NULL;
-    ret.ability_count = 0;
-    lua_pop(lua,1);
-}
     return ret;
 }
