@@ -6,6 +6,7 @@ typedef struct {
     char *cost;
     char *produces_color;
     int produces_amount;
+    int resolve_ref;
 } Ability;
 
 typedef struct {

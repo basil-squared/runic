@@ -13,6 +13,7 @@ void runic_free_card(Card *c) {
         FREE_AND_NULL(c->abilities[i].cost);
         FREE_AND_NULL(c->abilities[i].kind);
         FREE_AND_NULL(c->abilities[i].produces_color);
+        
     }
     FREE_AND_NULL(c->abilities);
     
