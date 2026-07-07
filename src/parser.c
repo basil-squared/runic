@@ -35,7 +35,6 @@ int runic_safe_alloc_fn(lua_State *lua, const char *field_name) {
     if (!lua_isnil(lua,-1)) {
         const char *src = lua_tostring(lua,-1);
         if (luaL_loadstring(lua,src) == LUA_OK) {
-            
             ret = luaL_ref(lua,LUA_REGISTRYINDEX);
             lua_pop(lua,1);
         } else {
