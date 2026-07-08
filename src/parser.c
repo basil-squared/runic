@@ -69,7 +69,7 @@ Card runic_parse(lua_State *lua, char *file_name) {
             abilities[i-1].kind = runic_safe_alloc(lua,"kind");
             abilities[i-1].cost = runic_safe_alloc(lua,"cost");
             if (strcmp(abilities[i-1].kind, "activated") == 0 || strcmp(abilities[i-1].kind, "triggered") == 0) {
-                abilities[i-1].resolve_ref = NULL; // TODO: change to runic_safe_alloc_fn when written
+                abilities[i-1].resolve_ref = runic_safe_alloc_fn(lua,abilities[i-1].kind);
             }
             lua_getfield(lua,-1,"produces");
             if (!lua_isnil(lua,-1)) {
