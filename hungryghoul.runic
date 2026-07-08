@@ -15,7 +15,7 @@ return {
         return {
             counter = {
                 type = "+1/+1",
-                target = self,
+                target = "self",
                 amount = 1
             }
         }

@@ -5,7 +5,8 @@ find_package(Lua REQUIRED)
 
 add_executable(Runic src/main.c
     src/parser.c
-    src/memoryutils.c)
+    src/memoryutils.c
+    src/functionhelpers.c)
 target_include_directories(Runic PRIVATE include)
 target_include_directories(Runic PRIVATE ${LUA_INCLUDE_DIR})
 target_link_libraries(Runic PRIVATE ${LUA_LIBRARIES})
